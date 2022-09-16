@@ -1,0 +1,26 @@
+org: jinhyeokfang
+app: jinhyeokbob-serverless-api
+service: jinhyeokbob-serverless
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  meal:
+    handler: handler.mealapi
+    events:
+      - httpApi:
+          path: /
+          method: get
+          cors: true
+        request: 
+          parameters: 
+             paths: 
+                year: true
+                month: true
+                day: true
+
+plugins:
+  - serverless-plugin-typescript
